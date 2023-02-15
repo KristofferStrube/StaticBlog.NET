@@ -1,0 +1,22 @@
+﻿@page "/"
+
+<PageTitle>StaticBlog.NET</PageTitle>
+
+@if (notSupported)
+{
+    <h1>The File System Access API is not supported in this browser. 😮</h1>
+    <p>Try another browser.</p>
+    return;
+}
+
+@if (Handles.BlogEntry is null)
+{
+    <div style="display:flex; justify-content:center; width:100%;">
+        <button class="btn btn-lg btn-success" @onclick=OpenDirectoryAsync>Open Blog Directory</button>
+    </div>
+}
+else
+{
+    <EditBlog BlogFolder="Handles.BlogEntry" />
+}
+

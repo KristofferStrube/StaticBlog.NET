@@ -1,0 +1,38 @@
+﻿<div class="vertical box no-border">
+    @if (settingsEntry is not null)
+    {
+        <EditSettings SettingsEntry="settingsEntry" />
+    }
+    else
+    {
+        <div class="box no-border">
+            <button @onclick=CreateSettingsEntryAsync class="btn btn-primary">Create Settings File</button>
+        </div>
+    }
+    @if (postsEntry is not null)
+    {
+        <div class="vertical box">
+            <div>
+                <h3>Posts</h3>
+            </div>
+            @for (int i = 0; i < postEntries.Length; i++)
+            {
+                var postEntry = postEntries[i];
+                <div class="horizontal box blue-border">
+                    <h4>@postEntry.Name</h4>
+                    <button @onclick="() => EditPost(postEntry)" class="btn btn-sm btn-primary">Edit Post</button>
+                </div>
+            }
+            <div class="box horizontal no-border">
+                <input type="text" @bind=@newPostName />
+                <button @onclick=AddPostEntryAsync class="btn btn-sm btn-primary">Add Post</button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <button @onclick=CreatePostsEntryAsync class="btn btn-primary">Create Posts Folder</button>
+    }
+</div>
+
+

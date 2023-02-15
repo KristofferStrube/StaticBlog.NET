@@ -1,0 +1,16 @@
+﻿@if (settings is null) return;
+
+<div class="box vertical">
+    <div>
+        <h2>Blog Settings</h2>
+    </div>
+    <div class="box horizontal no-border">
+        <label for="settingsName">Blog Name</label>
+        <input id="settingsName" @bind=settings.Name />
+    </div>
+    <div>
+        <button @onclick=SaveAsync class="btn btn-success">Save</button>
+    </div>
+</div>
+
+
