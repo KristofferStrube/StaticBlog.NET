@@ -3,6 +3,8 @@ This is a project for generating and editing a static blog. It stores the necess
 
 *This project is still under development, so some of these detail might not be implemented yet.*
 
+An example of a generated site can be seen at https://kristoffer-strube.dk/
+
 ## Solution structure
 The solution is separated in 4 main projects.
 ### StaticBlog.NET.Templater
