@@ -34,12 +34,13 @@ public static class BlogTemplater
     {
         writer.WriteLine("<head>");
         writer.Indent++;
+        writer.WriteLine("""<meta charset="UTF-8" />""");
+        writer.WriteLine("""<meta http-equiv="content-language" content="en" />""");
+        writer.WriteLine("""<meta name="viewport" content="width=device-width, initial-scale=1" />""");
         writer.WriteLine($"<title>{(post is null ? "" : $"{post.Title} - ")}{settings.Name}</title>");
-        writer.WriteLine($"""<meta charset="UTF-8">""");
-        writer.WriteLine("""<meta http-equiv="content-language" content="en">""");
-        writer.WriteLine("""<meta name="viewport" content="width=device-width, initial-scale=1">""");
-        writer.WriteLine($"""<meta name="description" content="{(post is null ? "" : $"{post.Teaser} - ")}{settings.Description}">""");
-        writer.WriteLine($"""<meta name="author" content="{settings.Author.Name}">""");
+        writer.WriteLine($"""<meta name="description" content="{(post is null ? "" : $"{post.Teaser} - ")}{settings.Description}" />""");
+        writer.WriteLine($"""<meta name="author" content="{settings.Author.Name}" />""");
+        writer.WriteLine($"""<meta property="og:author" content="{settings.Author.Name}" />""");
 
         // Twitter things
         if (post is not null)
@@ -50,6 +51,7 @@ public static class BlogTemplater
             <meta property="og:title" content="{post.Title} - {settings.Name}" />
             <meta property="og:type" content="article" />
             <meta property="og:description" content="{post.Teaser}" />
+            <meta name="publish_date" property="og:publish_date" content="{post.Date.ToDateTime(new TimeOnly()).ToString("yyyy-MM-ddTHH:mm:sszzz")}" />
             <meta property="og:image" content="https://kristoffer-strube.dk/{post.ImagePath}" />
             """);
         }
