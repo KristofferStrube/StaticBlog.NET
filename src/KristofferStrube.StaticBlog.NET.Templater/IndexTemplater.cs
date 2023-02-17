@@ -50,6 +50,12 @@ public static class IndexTemplater
 
         writer.WriteLine("""<div class="title-item">""");
         writer.Indent++;
+        writer.WriteLine($"""<a href="{Constants.POST_DIRECTORY}/{post.UrlPath}.html"><img alt="{post.Title}" src="{post.ImagePath}" height="100px" /></a>""");
+        writer.Indent--;
+        writer.WriteLine("</div>");
+
+        writer.WriteLine("""<div class="title-item">""");
+        writer.Indent++;
         writer.WriteLine($"""<h3><a class="no-link-style" href="{Constants.POST_DIRECTORY}/{post.UrlPath}.html">{post.Title}</a></h3>""");
         writer.Indent--;
         writer.WriteLine("</div>");
