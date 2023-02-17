@@ -26,7 +26,7 @@ public static class PostTemplater
         writer.Indent--;
         writer.WriteLine("</html>");
 
-        var content = resultingWriter.ToString();
+        var content = Encoding.UTF8.GetBytes(resultingWriter.ToString());
         return new File($"{post.UrlPath}.html", content);
     }
 

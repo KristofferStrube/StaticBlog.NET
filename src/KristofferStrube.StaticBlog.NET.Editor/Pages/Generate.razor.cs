@@ -45,6 +45,7 @@ public partial class Generate : ComponentBase
 
     public async Task GenerateAsync()
     {
+        if (blogDestinationEntry is null) return;
         try
         {
             entries = await Handles.BlogEntry!.ValuesAsync();
@@ -105,7 +106,7 @@ public partial class Generate : ComponentBase
                         {
                             if (childEntry is not FileSystemFileHandleInProcess fileHandle) continue;
                             var file = await fileHandle.GetFileAsync();
-                            files.Add(new Templater.File(childEntry.Name, await file.TextAsync()));
+                            files.Add(new Templater.File(childEntry.Name, await file.ArrayBufferAsync()));
                         }
                         extraDirectories.Add(new Templater.Directory(directoryHandle.Name, new(), files));
                     }

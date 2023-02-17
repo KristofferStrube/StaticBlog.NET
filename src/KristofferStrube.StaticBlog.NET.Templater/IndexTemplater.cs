@@ -19,7 +19,7 @@ public static class IndexTemplater
         writer.Indent--;
         writer.WriteLine("</html>");
 
-        var content = resultingWriter.ToString();
+        var content = Encoding.UTF8.GetBytes(resultingWriter.ToString());
         return new File(Constants.INDEX_FILE_NAME, content);
     }
 
@@ -45,30 +45,29 @@ public static class IndexTemplater
     {
         writer.WriteLine("""<div class="box">""");
         writer.Indent++;
+        writer.WriteLine($"""<a class="no-link-style" href="{Constants.POST_DIRECTORY}/{post.UrlPath}.html">""");
+        writer.Indent++;
         writer.WriteLine("""<div class="title-container">""");
         writer.Indent++;
 
-        writer.WriteLine("""<div class="title-item">""");
+        writer.WriteLine("""<div>""");
         writer.Indent++;
-        writer.WriteLine($"""<a href="{Constants.POST_DIRECTORY}/{post.UrlPath}.html"><img alt="{post.Title}" src="{post.ImagePath}" height="100px" /></a>""");
+        writer.WriteLine($"""<img alt="{post.Title}" src="{post.ImagePath}" class="teaser-image" />""");
         writer.Indent--;
         writer.WriteLine("</div>");
 
-        writer.WriteLine("""<div class="title-item">""");
+        writer.WriteLine("""<div>""");
         writer.Indent++;
-        writer.WriteLine($"""<h3><a class="no-link-style" href="{Constants.POST_DIRECTORY}/{post.UrlPath}.html">{post.Title}</a></h3>""");
-        writer.Indent--;
-        writer.WriteLine("</div>");
-
-        writer.WriteLine("""<div class="title-item date">""");
-        writer.Indent++;
+        writer.WriteLine($"""<h3>{post.Title}</h3>""");
         writer.WriteLine(post.Date.ToShortDateString());
+        writer.WriteLine($"<p>{post.Teaser}</p>");
         writer.Indent--;
         writer.WriteLine("</div>");
 
         writer.Indent--;
         writer.WriteLine("</div>");
-        writer.WriteLine($"<p>{post.Teaser}</p>");
+        writer.Indent--;
+        writer.WriteLine("</div>");
         writer.Indent--;
         writer.WriteLine("</div>");
     }

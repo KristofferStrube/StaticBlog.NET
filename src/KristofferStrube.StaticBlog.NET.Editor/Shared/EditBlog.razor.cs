@@ -94,6 +94,6 @@ public partial class EditBlog : ComponentBase
     void EditPost(FileSystemDirectoryHandleInProcess postEntry)
     {
         Handles.CurrentPostEntry = postEntry;
-        NavigationManager.NavigateTo("./post");
+        NavigationManager.NavigateTo("post");
     }
 }
