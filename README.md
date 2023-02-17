@@ -1,5 +1,5 @@
 # StaticBlog.NET
-This is a project for generating and editing a static blog. It stores the necessary information in a folder structure and uses MarkDown files for the main content of each blog post to enabled a mix between simplicity and customizability.
+This is a project for generating and editing a static blog. It stores the necessary information in a folder structure and uses MarkDown files for the main content of each blog post to enable a mix between simplicity and customizability.
 
 *This project is still under development, so some of these detail might not be implemented yet.*
 
