@@ -18,7 +18,7 @@ This part is still to be decided. But the main idea is that this will be an API 
 Later this data might be used to order some lists or show specific posts as "What to read next" in the bottom of each page.
 
 ## Future priorities
-To use the generator in something like an CI/CD pipeline it would be cool to have it as either an GitHub Actions package that can be added there or the more versatile approach, a `dotnet tool`.
+For using the generator in something like an CI/CD pipeline it would be cool to have it as either an GitHub Actions package that can be added there or the more versatile approach, a `dotnet tool`.
 
 ## Related articles
 - [Welcome to the blog - Kristoffer Strube’s Blog](https://kristoffer-strube.dk/post/welcome-to-the-blog.html)
