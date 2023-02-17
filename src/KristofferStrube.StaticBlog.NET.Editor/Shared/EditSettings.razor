@@ -6,10 +6,42 @@
     </div>
     <div class="box horizontal no-border">
         <label for="settingsName">Blog Name</label>
-        <input id="settingsName" @bind=settings.Name />
+        <input style="display:flex;flex:1;" id="settingsName" @bind=settings.Name />
     </div>
-    <div>
-        <button @onclick=SaveAsync class="btn btn-success">Save</button>
+    <div class="box horizontal no-border">
+        <label for="teaser">Teaser</label>
+        <input style="display:flex;flex:1;" id="teaser" @bind=settings.Teaser />
+    </div>
+    <div class="box horizontal no-border">
+        <label for="description">Description</label>
+        <input style="display:flex;flex:1;" id="description" @bind=settings.Description />
+    </div>
+    <div class="box vertical no-border">
+        <h3>Contact Information</h3>
+        @foreach (var link in settings.Author.Contact)
+        {
+            <div class="box vertical blue-border">
+                <div class="box horizontal no-border">
+                    <label for="@(link.DisplayText)-display">Display</label>
+                    <input style="display:flex;flex:1;" id="@(link.DisplayText)-display" @bind=link.DisplayText />
+                </div>
+                <div class="box horizontal no-border">
+                    <label for="@(link.DisplayText)-url">URL</label>
+                    <input style="display:flex;flex:1;" id="@(link.DisplayText)-url" @bind=link.URL />
+                </div>
+                <div>
+                    <button @onclick="() => settings.Author.Contact.Remove(link)" class="btn btn-warning">Delete</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="box horizontal no-border">
+        <div>
+            <button @onclick=SaveAsync class="btn btn-success">Save</button>
+        </div>
+        <div>
+            <button @onclick="() => settings.Author.Contact.Add(new())" class="btn btn-success">Add Contact</button>
+        </div>
     </div>
 </div>
 

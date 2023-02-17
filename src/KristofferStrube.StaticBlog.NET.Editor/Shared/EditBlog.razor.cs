@@ -44,8 +44,8 @@ public partial class EditBlog : ComponentBase
 
     async Task DetectPostsAsync()
     {
-        var settings = entries.FirstOrDefault(e => e.Name is "posts");
-        if (settings is FileSystemDirectoryHandleInProcess fileHandle)
+        var posts = entries.FirstOrDefault(e => e.Name is "posts");
+        if (posts is FileSystemDirectoryHandleInProcess fileHandle)
         {
             postsEntry = fileHandle;
             postEntries = (await postsEntry.ValuesAsync())

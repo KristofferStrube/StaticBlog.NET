@@ -1,6 +1,7 @@
 using KristofferStrube.Blazor.FileSystem;
 using KristofferStrube.StaticBlog.NET.Shared;
 using Microsoft.AspNetCore.Components;
+using System.Text.Json;
 using static System.Text.Json.JsonSerializer;
 
 namespace KristofferStrube.StaticBlog.NET.Editor.Shared;
@@ -34,7 +35,7 @@ public partial class EditSettings : ComponentBase
         try
         {
             await using var writer = await SettingsEntry.CreateWritableAsync();
-            await writer.WriteAsync(Serialize(settings));
+            await writer.WriteAsync(Serialize(settings, new JsonSerializerOptions() { WriteIndented = true }));
         }
         catch
         {

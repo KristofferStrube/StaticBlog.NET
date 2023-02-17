@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.30.4" />
     <PackageReference Include="KristofferStrube.Blazor.FileSystemAccess" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
@@ -14,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KristofferStrube.StaticBlog.NET.Shared\KristofferStrube.StaticBlog.NET.Shared.csproj" />
+    <ProjectReference Include="..\KristofferStrube.StaticBlog.NET.Templater\KristofferStrube.StaticBlog.NET.Templater.csproj" />
   </ItemGroup>
 
 </Project>

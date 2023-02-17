@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KristofferStrube.StaticBlog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KristofferStrube.StaticBlog.NET.Shared", "src\KristofferStrube.StaticBlog.NET.Shared\KristofferStrube.StaticBlog.NET.Shared.csproj", "{F752E97A-35AD-4CD3-8107-6047BA11CCCB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KristofferStrube.StaticBlog.NET.Templater", "src\KristofferStrube.StaticBlog.NET.Templater\KristofferStrube.StaticBlog.NET.Templater.csproj", "{322D300D-DFD5-459C-8270-FA67C3B2D760}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F752E97A-35AD-4CD3-8107-6047BA11CCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F752E97A-35AD-4CD3-8107-6047BA11CCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F752E97A-35AD-4CD3-8107-6047BA11CCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322D300D-DFD5-459C-8270-FA67C3B2D760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322D300D-DFD5-459C-8270-FA67C3B2D760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322D300D-DFD5-459C-8270-FA67C3B2D760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322D300D-DFD5-459C-8270-FA67C3B2D760}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

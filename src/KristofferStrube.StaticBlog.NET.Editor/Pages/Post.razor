@@ -5,17 +5,59 @@
 <h2>
     @Handles.CurrentPostEntry.Name
 </h2>
-@if (markDownEntry is not null)
-{
-    <div class="box vertical">
-        <textarea @bind=@markDown>
-                </textarea>
-        <button @onclick=SaveMarkDownAsync class="btn btn-success">Save MarkDown</button>
-    </div>
-}
-else
-{
-    <div class="box no-border">
-        <button @onclick=CreateMarkDownEntryAsync class="btn btn-primary">Create MarkDown File</button>
-    </div>
-}
+
+<div class="box vertical no-border">
+    @if (metaDataEntry is not null && post is not null)
+    {
+        <div class="box vertical">
+            <div>
+                <h3>Post MetaData</h3>
+            </div>
+            <div class="box horizontal no-border">
+                <label for="teaser" style="font-size:30px;">Title</label>
+                <input id="settingsName" style="display:flex;flex:1;font-size:30px;" @bind=post.Title />
+            </div>
+            <div class="box horizontal no-border">
+                <label for="url">URL path</label>
+                <input style="display:flex;flex:1;" id="url" @bind=post.UrlPath />
+            </div>
+            <div class="box horizontal no-border">
+                <label for="teaser">Teaser</label>
+                <input style="display:flex;flex:1;" id="teaser" @bind=post.Teaser />
+            </div>
+            <div class="box horizontal no-border">
+                <label for="description">Description</label>
+                <input style="display:flex;flex:1;" id="description" @bind=post.Description />
+            </div>
+            <div class="box horizontal no-border">
+                <label for="imagePath">Image Path</label>
+                <input style="display:flex;flex:1;" id="imagePath" @bind=post.ImagePath />
+            </div>
+            <div class="box horizontal no-border">
+                <label for="date">Date</label>
+                <input style="display:flex;flex:1;" id="date" type="date" @bind=post.Date />
+            </div>
+            <button @onclick=SaveMetaDataAsync class="btn btn-success">Save MetaData</button>
+        </div>
+    }
+    else
+    {
+        <div class="box no-border">
+            <button @onclick=CreateMetaDataEntryAsync class="btn btn-primary">Create MetaData File</button>
+        </div>
+    }
+
+    @if (markDownEntry is not null)
+    {
+        <div class="box vertical">
+            <textarea @bind=@markDown></textarea>
+            <button @onclick=SaveMarkDownAsync class="btn btn-success">Save MarkDown</button>
+        </div>
+    }
+    else
+    {
+        <div class="box no-border">
+            <button @onclick=CreateMarkDownEntryAsync class="btn btn-primary">Create MarkDown File</button>
+        </div>
+    }
+</div>

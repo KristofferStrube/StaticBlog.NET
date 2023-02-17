@@ -7,18 +7,20 @@ public class Post
     public string Description { get; set; } = string.Empty;
     public string Teaser { get; set; } = string.Empty;
     public string ImagePath { get; set; } = string.Empty;
-    public string Author { get; set; } = "Anonymous";
     public List<string> Tags { get; set; } = new();
     public List<string> AdditionalMetaTags { get; set; } = new();
+    public string Content { get; set; } = "";
+    public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
 
     public Post(string name)
     {
         name = name.Trim();
         Title = name;
-        UrlPath = name;
+        UrlPath = name.Trim().Replace(" ", "-");
         Description = name + " Description";
-        Description = name + " Teaser";
+        Teaser = name + " Teaser";
         Tags = name.Split(" ").ToList();
+        Content = name + " content";
     }
 
     public Post() { }

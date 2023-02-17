@@ -1,0 +1,29 @@
+﻿@page "/generate"
+
+@if (notSupported)
+{
+    <h1>The File System Access API is not supported in this browser. 😮</h1>
+    <p>Try another browser.</p>
+    return;
+}
+
+@if (Handles?.BlogEntry is null)
+{
+    <div style="display:flex; justify-content:center; width:100%;">
+        <p>You haven't picked a folder to generate from. Go to <a href="/">the Editor</a>.</p>
+    </div>
+}
+else if (blogDestinationEntry is null)
+{
+    <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+        <button class="btn btn-lg btn-success" @onclick=OpenGenerationDirectoryAsync>Open Generation Destination</button>
+        <p>The blog will be generated in this folder.</p>
+    </div>
+}
+else
+{
+    <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+        <button class="btn btn-lg btn-success" @onclick=GenerateAsync>Generate Again</button>
+        <p>Hurray, it has generated! Go check your folder.</p>
+    </div>
+}

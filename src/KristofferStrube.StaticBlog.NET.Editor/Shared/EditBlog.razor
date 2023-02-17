@@ -13,7 +13,7 @@
     {
         <div class="vertical box">
             <div>
-                <h3>Posts</h3>
+                <h2>Posts</h2>
             </div>
             @for (int i = 0; i < postEntries.Length; i++)
             {
@@ -24,8 +24,8 @@
                 </div>
             }
             <div class="box horizontal no-border">
-                <input type="text" @bind=@newPostName />
-                <button @onclick=AddPostEntryAsync class="btn btn-sm btn-primary">Add Post</button>
+                <input style="display:flex;flex:1;" type="text" @bind=@newPostName />
+                <button @onclick=AddPostEntryAsync class="btn btn-sm btn-success">Add Post</button>
             </div>
         </div>
     }
