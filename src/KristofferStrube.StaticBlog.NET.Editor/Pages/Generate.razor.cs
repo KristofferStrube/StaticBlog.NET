@@ -85,7 +85,8 @@ public partial class Generate : ComponentBase
                         var metaData = Deserialize<NET.Shared.Post>(await metaDataFile.TextAsync())!;
                         var contentEntry = await postEntry.GetFileHandleAsync("content.md");
                         var contentFile = await contentEntry.GetFileAsync();
-                        metaData.Content = Markdown.ToHtml(await contentFile.TextAsync());
+                        var textContent = await contentFile.TextAsync();
+                        metaData.Content = Markdown.ToHtml(textContent.Replace("{site}", settings.URL));
                         posts.Add(metaData);
                     }
                     catch

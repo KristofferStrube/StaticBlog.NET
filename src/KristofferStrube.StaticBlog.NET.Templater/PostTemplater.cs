@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KristofferStrube.StaticBlog.NET.Templater;
 
-public static class PostTemplater
+internal static class PostTemplater
 {
     public static Directory Directory(Settings settings, List<Post> posts, List<string> scripts, List<string> stylesheets)
     {
@@ -15,8 +15,8 @@ public static class PostTemplater
 
     public static File TemplatePost(Settings settings, Post post, List<string> scripts, List<string> stylesheets)
     {
-        var resultingWriter = new StringWriterWithEncoding(Encoding.UTF8);
-        var writer = new IndentedTextWriter(resultingWriter);
+        using var resultingWriter = new StringWriterWithEncoding(Encoding.UTF8);
+        using var writer = new IndentedTextWriter(resultingWriter);
 
         writer.WriteLine("""<!DOCTYPE html>""");
         writer.WriteLine("""<html lang="en">""");
@@ -49,7 +49,7 @@ public static class PostTemplater
         writer.WriteLine("</div>");
         writer.WriteLine("""<div class="title-item date">""");
         writer.Indent++;
-        writer.WriteLine(post.Date.ToShortDateString());
+        writer.WriteLine(post.PublishDate.ToShortDateString());
         writer.Indent--;
         writer.WriteLine("</div>");
         writer.Indent--;

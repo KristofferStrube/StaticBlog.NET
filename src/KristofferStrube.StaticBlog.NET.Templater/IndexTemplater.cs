@@ -4,12 +4,12 @@ using System.Text;
 
 namespace KristofferStrube.StaticBlog.NET.Templater;
 
-public static class IndexTemplater
+internal static class IndexTemplater
 {
     public static File File(Settings settings, List<Post> posts, List<string> scripts, List<string> stylesheets)
     {
-        var resultingWriter = new StringWriterWithEncoding(Encoding.UTF8);
-        var writer = new IndentedTextWriter(resultingWriter);
+        using var resultingWriter = new StringWriterWithEncoding(Encoding.UTF8);
+        using var writer = new IndentedTextWriter(resultingWriter);
 
         writer.WriteLine("""<!DOCTYPE html>""");
         writer.WriteLine("""<html lang="en">""");
@@ -59,7 +59,7 @@ public static class IndexTemplater
         writer.WriteLine("""<div>""");
         writer.Indent++;
         writer.WriteLine($"""<h3>{post.Title}</h3>""");
-        writer.WriteLine(post.Date.ToShortDateString());
+        writer.WriteLine(post.PublishDate.ToShortDateString());
         writer.WriteLine($"<p>{post.Teaser}</p>");
         writer.Indent--;
         writer.WriteLine("</div>");

@@ -10,7 +10,8 @@ public class Post
     public List<string> Tags { get; set; } = new();
     public List<string> AdditionalMetaTags { get; set; } = new();
     public string Content { get; set; } = "";
-    public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
+    public DateOnly PublishDate { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
+    public DateOnly LastUpdatedDate { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
 
     public Post(string name)
     {

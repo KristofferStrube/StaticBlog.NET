@@ -34,8 +34,12 @@
                 <input style="display:flex;flex:1;" id="imagePath" @bind=post.ImagePath />
             </div>
             <div class="box horizontal no-border">
-                <label for="date">Date</label>
-                <input style="display:flex;flex:1;" id="date" type="date" @bind=post.Date />
+                <label for="publishDate">Publish Date</label>
+                <input style="display:flex;flex:1;" id="publishDate" type="date" @bind=post.PublishDate />
+            </div>
+            <div class="box horizontal no-border">
+                <label for="updatedDate">Last Updated Date</label>
+                <input style="display:flex;flex:1;" id="updatedDate" type="date" @bind=post.LastUpdatedDate />
             </div>
             <button @onclick=SaveMetaDataAsync class="btn btn-success">Save MetaData</button>
         </div>

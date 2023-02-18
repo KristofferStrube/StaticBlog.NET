@@ -25,34 +25,36 @@ public static class BlogTemplater
         }
 
         var indexPage = IndexTemplater.File(settings, posts, scripts, stylesheets);
+        var rssFeed = RSSFeedTemplater.File(settings, posts);
         var postDirectory = PostTemplater.Directory(settings, posts, scripts, stylesheets);
 
-        return new Directory("root", extraDirectories.Append(postDirectory).ToList(), new() { indexPage });
+        return new Directory("root", extraDirectories.Append(postDirectory).ToList(), new() { indexPage, rssFeed });
     }
 
     public static void WriteHead(this IndentedTextWriter writer, Settings settings, List<string> scripts, List<string> stylesheets, Post? post = null)
     {
         writer.WriteLine("<head>");
         writer.Indent++;
-        writer.WriteLine("""<meta charset="UTF-8" />""");
-        writer.WriteLine("""<meta http-equiv="content-language" content="en" />""");
-        writer.WriteLine("""<meta name="viewport" content="width=device-width, initial-scale=1" />""");
-        writer.WriteLine($"<title>{(post is null ? "" : $"{post.Title} - ")}{settings.Name}</title>");
-        writer.WriteLine($"""<meta name="description" content="{(post is null ? "" : $"{post.Teaser} - ")}{settings.Description}" />""");
-        writer.WriteLine($"""<meta name="author" content="{settings.Author.Name}" />""");
-        writer.WriteLine($"""<meta property="og:author" content="{settings.Author.Name}" />""");
+        writer.WriteLine($"""
+            <meta charset="UTF-8" />
+            <meta http-equiv="content-language" content="en" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>{(post is null ? "" : $"{post.Title} - ")}{settings.Name}</title>
+            <meta name="description" content="{(post is null ? "" : $"{post.Teaser} - ")}{settings.Description}" />
+            <meta name="author" content="{settings.Author.Name}" />
+            <meta property="og:author" content="{settings.Author.Name}" />
+            """);
 
-        // Twitter things
         if (post is not null)
         {
             writer.WriteLine($"""
             <meta name="twitter:card" content="summary" />
-            <meta property="og:url" content="https://kristoffer-strube.dk/posts/{post.UrlPath}.html" />
+            <meta property="og:url" content="{settings.URL}/{Constants.POST_DIRECTORY}/{post.UrlPath}.html" />
             <meta property="og:title" content="{post.Title} - {settings.Name}" />
             <meta property="og:type" content="article" />
             <meta property="og:description" content="{post.Teaser}" />
-            <meta name="publish_date" property="og:publish_date" content="{post.Date.ToDateTime(new TimeOnly()).ToString("yyyy-MM-ddTHH:mm:sszzz")}" />
-            <meta property="og:image" content="https://kristoffer-strube.dk/{post.ImagePath}" />
+            <meta name="publish_date" property="og:publish_date" content="{post.PublishDate.ToDateTime(new TimeOnly()).ToString("yyyy-MM-ddTHH:mm:sszzz")}" />
+            <meta property="og:image" content="{settings.URL}/{post.ImagePath}" />
             """);
         }
 
@@ -72,10 +74,28 @@ public static class BlogTemplater
     {
         writer.WriteLine("<header>");
         writer.Indent++;
-        writer.WriteLine("""<div class="container">""");
+        writer.WriteLine("""<div class="container header-container">""");
+        writer.Indent++;
+
+        writer.WriteLine("""<div>""");
         writer.Indent++;
         writer.WriteLine($"""<h1><a class="no-link-style" href="{(string.Join("", Enumerable.Range(0, subpage).Select(_ => "../")))}index.html">{settings.Name}</a></h1>""");
         writer.WriteLine($"<span>{settings.Teaser}</span>");
+        writer.Indent--;
+        writer.WriteLine("</div>");
+
+        writer.WriteLine("""<div class="header-item">""");
+        writer.Indent++;
+        writer.WriteLine($"""<span><a href="{(string.Join("", Enumerable.Range(0, subpage).Select(_ => "../")))}">Home</a></span>""");
+        writer.Indent--;
+        writer.WriteLine("</div>");
+
+        writer.WriteLine("""<div class="header-item">""");
+        writer.Indent++;
+        writer.WriteLine($"""<span><a href="{(string.Join("", Enumerable.Range(0, subpage).Select(_ => "../")))}{Constants.RSS_FEED_FILE_NAME}">RSS Feed 🔖</a></span>""");
+        writer.Indent--;
+        writer.WriteLine("</div>");
+
         writer.Indent--;
         writer.WriteLine("</div>");
         writer.Indent--;
