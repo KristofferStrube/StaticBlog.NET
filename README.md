@@ -7,6 +7,14 @@ An example of a generated site can be seen at https://kristoffer-strube.dk/
 
 This is generated from the files at https://github.com/KristofferStrube/Blog
 
+## Demo
+You can try out the blog editor at https://kristofferstrube.github.io/StaticBlog.NET/
+
+## Features
+- Default meta tags.
+- Automatic script and css inclusion
+- Chronologial post list
+
 ## Solution structure
 The solution is separated in 4 main projects.
 ### StaticBlog.NET.Templater
