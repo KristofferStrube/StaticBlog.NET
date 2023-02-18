@@ -43,6 +43,7 @@ public static class BlogTemplater
             <meta name="description" content="{(post is null ? "" : $"{post.Teaser} - ")}{settings.Description}" />
             <meta name="author" content="{settings.Author.Name}" />
             <meta property="og:author" content="{settings.Author.Name}" />
+            <link rel="alternate" type="application/rss+xml" title="{settings.Name} RSS feed" href="{settings.URL}/{Constants.RSS_FEED_FILE_NAME}" />
             """);
 
         if (post is not null)

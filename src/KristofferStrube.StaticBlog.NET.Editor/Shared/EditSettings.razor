@@ -20,6 +20,18 @@
         <label for="description">Description</label>
         <input style="display:flex;flex:1;" id="description" @bind=settings.Description />
     </div>
+    <div class="box horizontal no-border">
+        <label for="authorName">Author Name</label>
+        <input style="display:flex;flex:1;" id="authorName" @bind=settings.Author.Name />
+    </div>
+    <div class="box horizontal no-border">
+        <label for="authorEmail">Author Email</label>
+        <input style="display:flex;flex:1;" id="authorEmail" @bind=settings.Author.Email />
+    </div>
+    <div class="box horizontal no-border">
+        <label for="authorWebsite">Author WebSite</label>
+        <input style="display:flex;flex:1;" id="authorWebsite" @bind=settings.Author.WebSite />
+    </div>
     <div class="box vertical no-border">
         <h3>Contact Information</h3>
         @foreach (var link in settings.Author.Contact)
