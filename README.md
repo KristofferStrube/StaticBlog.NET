@@ -26,7 +26,7 @@ The editor can likewise call the templater to generate the output files to some 
 ### StaticBlog.NET.Generator
 This is a CLI tool that simply is able to open the files in a directory like the editor and then use the templating project to generate the necessary files before writing them to some output path.
 ### StaticBlog.NET.Analytics
-This part is still to be decided. But the main idea is that this will be an API that can be used for tracking user behavior i.e. how many visits each post has (we don't need a cookie consent for that).
+This part is still to be decided. But the main idea is that this will be an API that can be used for analyze user behavior i.e. how many visits each post has (we don't need a cookie consent for that).
 
 Later this data might be used to order some lists or show specific posts as "What to read next" in the bottom of each page.
 
