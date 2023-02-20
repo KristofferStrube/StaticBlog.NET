@@ -9,12 +9,13 @@ internal static class RSSFeedTemplater
 {
     public static File File(Settings settings, List<Post> posts)
     {
-        SyndicationFeed feed = new(settings.Name, settings.Description, new Uri($"{settings.URL}/{Constants.RSS_FEED_FILE_NAME}"), settings.URL, DateTime.Now);
+        SyndicationFeed feed = new(settings.Name, settings.Description, new Uri(settings.URL), settings.URL, DateTime.Now);
 
-        SyndicationPerson author = new SyndicationPerson(settings.Author.Email, settings.Author.Email, settings.Author.Name);
+        SyndicationPerson author = new(settings.Author.Email, settings.Author.Email, settings.Author.Name);
         feed.Authors.Add(author);
 
         feed.Language = "en";
+        feed.TimeToLive = new TimeSpan(2, 0, 0);
 
         List<SyndicationItem> postItems = new(posts.Count);
         foreach (var post in posts)
@@ -23,7 +24,7 @@ internal static class RSSFeedTemplater
                 new SyndicationItem(
                     post.Title,
                     post.Content,
-                    new Uri($"{settings.URL}/{Constants.POST_DIRECTORY}/{post.UrlPath}.html"),
+                    new Uri($"{settings.URL}/{Constants.POST_DIRECTORY}/{post.UrlPath}/"),
                     post.UrlPath,
                     new DateTimeOffset(post.LastUpdatedDate.ToDateTime(TimeOnly.MinValue)))
                 {
@@ -37,8 +38,7 @@ internal static class RSSFeedTemplater
 
         var textWriter = new StringWriterWithEncoding(Encoding.UTF8);
         var xmlWriter = XmlWriter.Create(textWriter);
-        Rss20FeedFormatter rssFormatter = new Rss20FeedFormatter(feed);
-        rssFormatter.WriteTo(xmlWriter);
+        feed.GetRss20Formatter().WriteTo(xmlWriter);
         xmlWriter.Close();
 
         var feedContent = Encoding.UTF8.GetBytes(textWriter.ToString());

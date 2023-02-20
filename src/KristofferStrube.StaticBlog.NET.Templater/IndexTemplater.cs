@@ -45,7 +45,7 @@ internal static class IndexTemplater
     {
         writer.WriteLine("""<div class="box">""");
         writer.Indent++;
-        writer.WriteLine($"""<a class="no-link-style" href="{Constants.POST_DIRECTORY}/{post.UrlPath}.html">""");
+        writer.WriteLine($"""<a class="no-link-style" href="{Constants.POST_DIRECTORY}/{post.UrlPath}/">""");
         writer.Indent++;
         writer.WriteLine("""<div class="title-container">""");
         writer.Indent++;

@@ -10,10 +10,10 @@ internal static class PostTemplater
     {
         var files = posts.Select(p => TemplatePost(settings, p, scripts, stylesheets)).ToList();
 
-        return new Directory(Constants.POST_DIRECTORY, new(), files);
+        return new Directory(Constants.POST_DIRECTORY, files, new());
     }
 
-    public static File TemplatePost(Settings settings, Post post, List<string> scripts, List<string> stylesheets)
+    public static Directory TemplatePost(Settings settings, Post post, List<string> scripts, List<string> stylesheets)
     {
         using var resultingWriter = new StringWriterWithEncoding(Encoding.UTF8);
         using var writer = new IndentedTextWriter(resultingWriter);
@@ -27,14 +27,14 @@ internal static class PostTemplater
         writer.WriteLine("</html>");
 
         var content = Encoding.UTF8.GetBytes(resultingWriter.ToString());
-        return new File($"{post.UrlPath}.html", content);
+        return new Directory(post.UrlPath, new (), new() { new File("index.html", content) });
     }
 
     public static void WritePostBody(this IndentedTextWriter writer, Settings settings, Post post)
     {
         writer.WriteLine("<body>");
         writer.Indent++;
-        writer.WriteHeader(settings, 1);
+        writer.WriteHeader(settings, 2);
         writer.WriteLine("""<main class="container">""");
         writer.Indent++;
         writer.WriteLine("<article>");
@@ -57,7 +57,7 @@ internal static class PostTemplater
 
         writer.WriteLine("""<div class="cover-image-container">""");
         writer.Indent++;
-        writer.WriteLine($"""<img class="cover-image" alt="{post.Title}" src="../{post.ImagePath}" />""");
+        writer.WriteLine($"""<img class="cover-image" alt="{post.Title}" src="../../{post.ImagePath}" />""");
         writer.Indent--;
         writer.WriteLine("</div>");
 

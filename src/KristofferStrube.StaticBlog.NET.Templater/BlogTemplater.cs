@@ -50,22 +50,22 @@ public static class BlogTemplater
         {
             writer.WriteLine($"""
             <meta name="twitter:card" content="summary" />
-            <meta property="og:url" content="{settings.URL}/{Constants.POST_DIRECTORY}/{post.UrlPath}.html" />
+            <meta property="og:url" content="{settings.URL}/{Constants.POST_DIRECTORY}/{post.UrlPath}/" />
             <meta property="og:title" content="{post.Title} - {settings.Name}" />
             <meta property="og:type" content="article" />
             <meta property="og:description" content="{post.Teaser}" />
-            <meta name="publish_date" property="og:publish_date" content="{post.PublishDate.ToDateTime(new TimeOnly()).ToString("yyyy-MM-ddTHH:mm:sszzz")}" />
+            <meta name="publish_date" property="og:publish_date" content="{post.PublishDate.ToDateTime(new TimeOnly()):yyyy-MM-ddTHH:mm:sszzz}" />
             <meta property="og:image" content="{settings.URL}/{post.ImagePath}" />
             """);
         }
 
         foreach (var script in scripts)
         {
-            writer.WriteLine($"""<script src="{(post is null ? "" : "../")}{script}"></script>""");
+            writer.WriteLine($"""<script src="{(post is null ? "" : "../../")}{script}"></script>""");
         }
         foreach (var stylesheet in stylesheets)
         {
-            writer.WriteLine($"""<link href="{(post is null ? "" : "../")}{stylesheet}" rel="Stylesheet" type="text/css">""");
+            writer.WriteLine($"""<link href="{(post is null ? "" : "../../")}{stylesheet}" rel="Stylesheet" type="text/css">""");
         }
         writer.Indent--;
         writer.WriteLine("</head>");
@@ -80,7 +80,7 @@ public static class BlogTemplater
 
         writer.WriteLine("""<div>""");
         writer.Indent++;
-        writer.WriteLine($"""<h1><a class="no-link-style" href="{(string.Join("", Enumerable.Range(0, subpage).Select(_ => "../")))}index.html">{settings.Name}</a></h1>""");
+        writer.WriteLine($"""<h1><a class="no-link-style" href="{(string.Join("", Enumerable.Range(0, subpage).Select(_ => "../")))}">{settings.Name}</a></h1>""");
         writer.WriteLine($"<span>{settings.Teaser}</span>");
         writer.Indent--;
         writer.WriteLine("</div>");
