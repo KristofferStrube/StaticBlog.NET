@@ -67,7 +67,7 @@ internal static class IndexTemplater
         writer.Indent--;
         writer.WriteLine("</div>");
         writer.Indent--;
-        writer.WriteLine("</div>");
+        writer.WriteLine("</a>");
         writer.Indent--;
         writer.WriteLine("</div>");
     }

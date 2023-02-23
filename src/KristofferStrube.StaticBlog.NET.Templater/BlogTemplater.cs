@@ -26,7 +26,7 @@ public static class BlogTemplater
 
         var indexPage = IndexTemplater.File(settings, posts, scripts, stylesheets);
         var rssFeed = RSSFeedTemplater.File(settings, posts);
-        var postDirectory = PostTemplater.Directory(settings, posts, scripts, stylesheets);
+        var postDirectory = PostTemplater.Directory(settings, posts.OrderBy(p => p.PublishDate).ToList(), scripts, stylesheets);
 
         return new Directory("root", extraDirectories.Append(postDirectory).ToList(), new() { indexPage, rssFeed });
     }
