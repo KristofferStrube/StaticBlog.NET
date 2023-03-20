@@ -59,6 +59,10 @@ public static class BlogTemplater
             <meta name="publish_date" property="og:publish_date" content="{post.PublishDate.ToDateTime(new TimeOnly()):yyyy-MM-ddTHH:mm:sszzz}" />
             <meta property="og:image" content="{settings.URL}/{post.ImagePath}" />
             """);
+            if (!string.IsNullOrEmpty(post.CanonicalPostOrigin))
+            {
+                writer.WriteLine($"<link rel=\"canonical\" href=\"{post.CanonicalPostOrigin}\" />");
+            }
         }
 
         foreach (var script in scripts)

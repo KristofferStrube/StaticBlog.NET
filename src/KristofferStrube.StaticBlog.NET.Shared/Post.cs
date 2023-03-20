@@ -9,6 +9,7 @@ public class Post
     public string ImagePath { get; set; } = string.Empty;
     public List<string> Tags { get; set; } = new();
     public List<string> AdditionalMetaTags { get; set; } = new();
+    public string CanonicalPostOrigin { get; set; } = string.Empty;
     public string Content { get; set; } = "";
     public DateOnly PublishDate { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
     public DateOnly LastUpdatedDate { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
