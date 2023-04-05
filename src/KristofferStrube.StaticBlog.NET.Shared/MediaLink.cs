@@ -2,7 +2,7 @@
 
 public class MediaLink
 {
-    public string DisplayText { get; set; }
-    public string URL { get; set; }
+    public string DisplayText { get; set; } = string.Empty;
+    public string URL { get; set; } = string.Empty;
     public string? Image { get; set; } = null;
 }

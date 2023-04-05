@@ -42,6 +42,7 @@ public static class BlogTemplater
             <meta http-equiv="content-language" content="en" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <title>{(post is null ? "" : $"{post.Title} - ")}{settings.Name}</title>
+            <link rel="icon" type="image/x-icon" href="{settings.URL}/{settings.Logo}">
             <meta name="description" content="{(post is null ? "" : $"{post.Teaser} - ")}{settings.Description}" />
             <meta name="author" content="{settings.Author.Name}" />
             <meta property="og:author" content="{settings.Author.Name}" />
