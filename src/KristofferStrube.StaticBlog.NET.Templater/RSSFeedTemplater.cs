@@ -7,7 +7,7 @@ namespace KristofferStrube.StaticBlog.NET.Templater;
 
 internal static class RSSFeedTemplater
 {
-    public static File File(Settings settings, List<Post> posts)
+    public static File File(Settings settings, List<Post> posts, string? tag = null)
     {
         SyndicationFeed feed = new(settings.Name, settings.Description, new Uri(settings.URL), settings.URL, DateTime.Now);
 
@@ -18,7 +18,7 @@ internal static class RSSFeedTemplater
         feed.TimeToLive = new TimeSpan(2, 0, 0);
 
         List<SyndicationItem> postItems = new(posts.Count);
-        foreach (var post in posts)
+        foreach (var post in posts.Where(p => tag is null || p.Tags.Contains(tag)))
         {
             postItems.Add(
                 new SyndicationItem(
@@ -42,6 +42,6 @@ internal static class RSSFeedTemplater
         xmlWriter.Close();
 
         var feedContent = Encoding.UTF8.GetBytes(textWriter.ToString());
-        return new File(Constants.RSS_FEED_FILE_NAME, feedContent);
+        return new File(Constants.RSS_FEED_FILE_NAME_START + (tag is null ? "" : $".{tag}") + $".{Constants.RSS_FEED_FILE_NAME_EXTENSION}", feedContent);
     }
 }

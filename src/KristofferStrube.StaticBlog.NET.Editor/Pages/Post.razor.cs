@@ -13,6 +13,7 @@ public partial class Post : ComponentBase
     private FileSystemFileHandleInProcess? metaDataEntry;
     private string markDown = string.Empty;
     private NET.Shared.Post? post;
+    private string tags = string.Empty;
 
     [Inject]
     public HandleHolder Handles { get; set; } = default!;

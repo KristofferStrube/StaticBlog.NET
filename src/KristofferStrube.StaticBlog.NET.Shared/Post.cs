@@ -1,4 +1,6 @@
-﻿namespace KristofferStrube.StaticBlog.NET.Shared;
+﻿using System.Text.Json.Serialization;
+
+namespace KristofferStrube.StaticBlog.NET.Shared;
 
 public class Post
 {
@@ -8,6 +10,8 @@ public class Post
     public string Teaser { get; set; } = string.Empty;
     public string ImagePath { get; set; } = string.Empty;
     public List<string> Tags { get; set; } = new();
+    [JsonIgnore]
+    public string TagsAsString { get => string.Join(" ", Tags); set { Tags = value.Split(" ").ToList(); } }
     public List<string> AdditionalMetaTags { get; set; } = new();
     public string CanonicalPostOrigin { get; set; } = string.Empty;
     public string Content { get; set; } = "";

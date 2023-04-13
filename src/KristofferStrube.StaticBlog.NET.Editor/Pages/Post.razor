@@ -34,6 +34,10 @@
                 <input style="display:flex;flex:1;" id="imagePath" @bind=post.ImagePath />
             </div>
             <div class="box horizontal no-border">
+                <label for="tags">Tags (space seperated)</label>
+                <input style="display:flex;flex:1;" id="tags" @bind=post.TagsAsString />
+            </div>
+            <div class="box horizontal no-border">
                 <label for="canonicalPostOrigin">Canonical Post Origin</label>
                 <input style="display:flex;flex:1;" id="canonicalPostOrigin" @bind=post.CanonicalPostOrigin />
             </div>

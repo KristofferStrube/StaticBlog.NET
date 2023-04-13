@@ -28,9 +28,12 @@ public static class BlogTemplater
 
         var indexPage = IndexTemplater.File(settings, posts, scripts, stylesheets);
         var rssFeed = RSSFeedTemplater.File(settings, posts);
+        var taggedRssFeeds = posts.SelectMany(p => p.Tags).Distinct().Select(tag => RSSFeedTemplater.File(settings, posts, tag));
         var postDirectory = PostTemplater.Directory(settings, posts, scripts, stylesheets);
+        var files = new List<File>() { indexPage, rssFeed };
+        files.AddRange(taggedRssFeeds);
 
-        return new Directory("root", extraDirectories.Append(postDirectory).ToList(), new() { indexPage, rssFeed });
+        return new Directory("root", extraDirectories.Append(postDirectory).ToList(), files);
     }
 
     public static void WriteHead(this IndentedTextWriter writer, Settings settings, List<string> scripts, List<string> stylesheets, Post? post = null)
@@ -46,7 +49,7 @@ public static class BlogTemplater
             <meta name="description" content="{(post is null ? "" : $"{post.Teaser} - ")}{settings.Description}" />
             <meta name="author" content="{settings.Author.Name}" />
             <meta property="og:author" content="{settings.Author.Name}" />
-            <link rel="alternate" type="application/rss+xml" title="{settings.Name} RSS feed" href="{settings.URL}/{Constants.RSS_FEED_FILE_NAME}" />
+            <link rel="alternate" type="application/rss+xml" title="{settings.Name} RSS feed" href="{settings.URL}/{Constants.RSS_FEED_FILE_NAME_START}.{Constants.RSS_FEED_FILE_NAME_EXTENSION}" />
             """);
 
         if (post is not null)
@@ -100,7 +103,7 @@ public static class BlogTemplater
 
         writer.WriteLine("""<div class="header-item">""");
         writer.Indent++;
-        writer.WriteLine($"""<span><a href="{(string.Join("", Enumerable.Range(0, subpage).Select(_ => "../")))}{Constants.RSS_FEED_FILE_NAME}">RSS Feed 🔖</a></span>""");
+        writer.WriteLine($"""<span><a href="{(string.Join("", Enumerable.Range(0, subpage).Select(_ => "../")))}{Constants.RSS_FEED_FILE_NAME_START}.{Constants.RSS_FEED_FILE_NAME_EXTENSION}">RSS Feed 🔖</a></span>""");
         writer.Indent--;
         writer.WriteLine("</div>");
 
