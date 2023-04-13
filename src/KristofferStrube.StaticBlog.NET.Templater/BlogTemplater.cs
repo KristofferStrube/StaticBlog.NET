@@ -28,7 +28,10 @@ public static class BlogTemplater
 
         var indexPage = IndexTemplater.File(settings, posts, scripts, stylesheets);
         var rssFeed = RSSFeedTemplater.File(settings, posts);
-        var taggedRssFeeds = posts.SelectMany(p => p.Tags).Distinct().Select(tag => RSSFeedTemplater.File(settings, posts, tag));
+        var taggedRssFeeds = posts
+            .SelectMany(post => post.Tags)
+            .Distinct()
+            .Select(tag => RSSFeedTemplater.File(settings, posts, tag));
         var postDirectory = PostTemplater.Directory(settings, posts, scripts, stylesheets);
         var files = new List<File>() { indexPage, rssFeed };
         files.AddRange(taggedRssFeeds);
