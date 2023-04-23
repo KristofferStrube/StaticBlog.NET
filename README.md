@@ -14,7 +14,7 @@ You can try out the blog editor at https://kristofferstrube.github.io/StaticBlog
 - Default meta tags.
 - Automatic script and css inclusion
 - Chronologial post list
-- RSS feed generation
+- RSS feed generation with tagged feeds.
 
 ## Solution structure
 The solution is separated in 4 main projects.
