@@ -49,7 +49,7 @@ internal static class PostTemplater
         writer.WriteLine("</div>");
         writer.WriteLine("""<div class="title-item date">""");
         writer.Indent++;
-        writer.WriteLine(post.PublishDate.ToShortDateString());
+        writer.WriteLine(post.PublishDate.ToString("MMMM dd, yyyy"));
         writer.Indent--;
         writer.WriteLine("</div>");
         writer.Indent--;

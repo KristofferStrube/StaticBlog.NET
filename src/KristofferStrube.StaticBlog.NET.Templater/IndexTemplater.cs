@@ -59,7 +59,7 @@ internal static class IndexTemplater
         writer.WriteLine("""<div>""");
         writer.Indent++;
         writer.WriteLine($"""<h3>{post.Title}</h3>""");
-        writer.WriteLine(post.PublishDate.ToShortDateString());
+        writer.WriteLine(post.PublishDate.ToString("MMMM dd, yyyy"));
         writer.WriteLine($"<p>{post.Teaser}</p>");
         writer.Indent--;
         writer.WriteLine("</div>");
